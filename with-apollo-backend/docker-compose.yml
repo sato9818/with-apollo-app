@@ -1,0 +1,24 @@
+version: '3'
+services:
+  go:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "air -c .air.toml && go run ./server.go"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    container_name: mysql_go
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: gotest
+      MYSQL_USER: root
+    ports:
+      - "3306:3306"
