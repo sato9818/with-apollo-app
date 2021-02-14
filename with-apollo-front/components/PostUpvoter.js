@@ -21,7 +21,7 @@ export default function PostUpvoter({ votes, id }) {
       },
       optimisticResponse: {
         __typename: 'Mutation',
-        updatePost: {
+        votePost: {
           __typename: 'Post',
           id,
           votes: votes + 1,

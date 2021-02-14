@@ -55,6 +55,7 @@ func (r *mutationResolver) UpdatePost(ctx context.Context, id string, votes *int
 	}
 
 	post.Votes = *votes + 1
+	r.DB.Save(&post)
 	return &post, nil
 }
 
